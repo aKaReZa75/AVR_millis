@@ -19,6 +19,7 @@
  *           - CPU frequency assumed to be 16MHz (adjust OCR0A for different frequencies)
  * 
  * @note     Usage Example:
+ *           extern volatile uint32_t System_millis;
  *           millis_Init();              // Initialize timer
  *           globalInt_Enable();         // Enable global interrupts
  *           uint32_t start = System_millis;
@@ -49,7 +50,7 @@ volatile uint32_t System_millis = 0;     /**< System millisecond counter - incre
  * @note This ISR is called every 1 millisecond when Timer0 matches OCR0A
  *       Increments the global millisecond counter
  * @note IMPORTANT: Global interrupts must be enabled for this ISR to execute
- *       Call globalInt_Enable() or manually set I-bit in SREG
+ *       Call globalInt_Enable macro or manually set I-bit in SREG
  * @note ISR execution time should be minimal to avoid timing drift
  * ------------------------------------------------------- */
 ISR(TIMER0_COMPA_vect)
