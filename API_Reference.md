@@ -134,7 +134,7 @@ extern volatile uint32_t System_millis;
 int main(void) 
 {
     millis_Init();        // Initialize millisecond timer
-    globalInt_Enable();   // Enable global interrupts (required!)
+    globalInt_Enable;     // Enable global interrupts (required!)
     
     // Your code here
     
@@ -147,7 +147,7 @@ int main(void)
 
 > [!IMPORTANT]
 > - The `millis_Init()` function **does not enable global interrupts**
-> - You must call `sei()` or `globalInt_Enable()` after initialization
+> - You must call `sei()` or `globalInt_Enable` after initialization
 > - Without enabled interrupts, `System_millis` will not increment
 
 ---
@@ -173,6 +173,8 @@ Ensures the compiler doesn't optimize access to this variable, critical for vari
 
 **Usage:**  
 ```c
+extern volatile uint32_t System_millis;
+
 // Read current millisecond count
 uint32_t current_time = System_millis;
 
@@ -223,6 +225,9 @@ typedef struct
 
 **Usage Pattern:**
 ```c
+#include "aKaReZa.h"
+#include "millis.h"
+
 extern volatile uint32_t System_millis;
 
 millis_T timer;
@@ -586,7 +591,7 @@ int main(void)
 
 **Solutions:**
 1. Check if `millis_Init()` was called
-2. Verify global interrupts are enabled (`sei()` or `globalInt_Enable()`)
+2. Verify global interrupts are enabled (`sei()` or `globalInt_Enable`)
 3. Confirm no other code disables interrupts with `cli()`
 4. Check if Timer0 is being reinitialized elsewhere
 
@@ -621,7 +626,7 @@ if (TIMSK0 & (1 << OCIE0A))
 ```c
 // Run this test to verify 1 second = 1000ms
 millis_Init();
-globalInt_Enable();
+globalInt_Enable;
 
 uint32_t start = System_millis;
 _delay_ms(10000);  // 10 seconds using calibrated delay
@@ -680,9 +685,9 @@ while(1)
 **After (Non-Blocking):**
 ```c
 millis_Init();
-globalInt_Enable();
+globalInt_Enable;
 
-millis_T timer = {0, 0, 500};
+millis_T timer = {.Delta = 0, .Previous = 0,.Interval = 500};
 
 while(1)
 {
