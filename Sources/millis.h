@@ -21,13 +21,13 @@
  * @note     Usage:
  *           1. Call millis_Init() once during system initialization
  *           2. Create millis_T structure for each timing task
- *           3. Use HAL_GetTick() to get current millisecond count
+ *           3. Use System_millis to get current millisecond count
  *           4. Calculate elapsed time using delta between timestamps
  * 
  * @note     Example:
- *           millis_T ledTimer = {0, 0, 1000};  // 1 second interval
- *           uint32_t currentMillis = HAL_GetTick();
- *           ledTimer.Delta = currentMillis - ledTimer.Previous;
+ *           extern volatile uint32_t System_millis;
+ *           millis_T ledTimer = {.Delta = 0, .Previous = 0, .Interval = 1000};  // 1 second interval
+ *           ledTimer.Delta = System_millis - ledTimer.Previous;
  *           if (ledTimer.Delta >= ledTimer.Interval) {
  *               ledTimer.Previous = currentMillis;
  *               // Execute periodic task
@@ -87,7 +87,7 @@ typedef struct
  * @retval None
  * @note Sets up SysTick timer for 1ms interrupt generation
  *       Must be called once before using timing functions
- *       Uses HAL_GetTick() for millisecond counter access
+ *       Uses System_millis for millisecond counter access
  * ------------------------------------------------------- */
 void millis_Init(void);
 
