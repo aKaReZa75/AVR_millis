@@ -98,12 +98,6 @@ The library configures Timer0 to generate interrupts every 1 millisecond:
 - Safe timing up to 49.7 days continuous operation
 - No special handling required for rollover
 
-✅ **Minimal Overhead**
-- Fast ISR execution (~10-20 CPU cycles)
-- Low memory footprint (~100 bytes flash)
-- ~0.1% CPU utilization at 16MHz
-- Negligible impact on system performance
-
 ✅ **Flexible Timing Structures**
 - `millis_T` structure for periodic tasks
 - Previous timestamp tracking
@@ -115,12 +109,6 @@ The library configures Timer0 to generate interrupts every 1 millisecond:
 - Single global variable access
 - Compatible with existing AVR projects
 - No external dependencies (requires aKaReZa.h base library)
-
-✅ **Low Power Consideration**
-- Continues operation in Idle sleep mode
-- Stops in deep sleep modes (Power-down, Power-save)
-- Predictable power consumption profile
-- Optional prescaler adjustment for power optimization
 
 # 🔗 Resources
   Here you'll find a collection of useful links and videos related to the topic of AVR microcontrollers.  
