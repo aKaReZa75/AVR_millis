@@ -188,16 +188,6 @@ uint32_t start = System_millis;
 while ((System_millis - start) < 1000);  // Wait 1 second
 ```
 
-> [!WARNING]
-> - Always read `System_millis` atomically if reading more than 8 bits
-> - For AVR, 32-bit reads are not atomic - disable interrupts if critical:
-> ```c
-> uint32_t current;
-> cli();  // Disable interrupts
-> current = System_millis;
-> sei();  // Re-enable interrupts
-> ```
-
 ---
 
 ### Non-Blocking Timing Structure
@@ -635,35 +625,6 @@ uint32_t actual = System_millis - start;
 // actual should be ~10000
 // If significantly different, adjust OCR0A
 ```
-
----
-
-## FAQ (Frequently Asked Questions)
-
-**Q: How do I implement a delay using millis?**  
-A: Use the subtraction method:
-```c
-uint32_t start = System_millis;
-while ((System_millis - start) < 1000);  // Wait 1 second
-```
-
-**Q: What happens after 49.7 days?**  
-A: The counter rolls over to 0. Use the subtraction method for timing, which handles rollover automatically.
-
-**Q: Can I change the interrupt frequency?**  
-A: Yes, by modifying the prescaler and OCR0A value. However, 1ms is optimal for most applications.
-
-**Q: How much does this affect my program?**  
-A: Minimal impact. About 0.1% CPU time at 16MHz, and ~100 bytes of flash memory.
-
-**Q: Why not use Timer1 instead?**  
-A: Timer1 is 16-bit and better suited for PWM. Timer0 is simpler and traditionally used for system timing.
-
-**Q: Is this library safe for interrupt-driven applications?**  
-A: Yes. The ISR is very short and only increments a counter. However, ensure atomic access if reading `System_millis` from other ISRs.
-
-**Q: Can I port this to other AVR models?**  
-A: Yes. All AVR microcontrollers with Timer0 can use this library. Just verify register names in the datasheet.
 
 ---
 
