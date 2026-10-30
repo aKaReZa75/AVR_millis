@@ -140,9 +140,25 @@ The library configures Timer0 to generate interrupts every 1 millisecond:
 
 ## Project Videos
 
-> [!CAUTION]
-> This tutorial has not yet **started!**
-
+<table style="border-collapse: collapse;">
+  <tr>
+    <td valign="top" style="padding: 0 10px;">
+      <h3 style="margin: 0;">
+        <a href="https://youtu.be/Jw2_HUWW0NI">aKaReZa 122 – AVR, Timer, Millis - Mode 7</a>
+      </h3>
+      <p style="margin: 8px 0 0;">
+        Learn how to implement the <code>millis()</code> concept in AVR microcontrollers for non-blocking delays and multitasking without an RTOS. This video walks through project setup, task scheduling, timer configuration, and internal logic analysis—perfect for building responsive embedded systems with clean timing control.
+      </p>
+    </td>
+    <td width="360" valign="top">
+      <a href="https://youtu.be/Jw2_HUWW0NI">
+        <img src="https://img.youtube.com/vi/Jw2_HUWW0NI/maxresdefault.jpg"
+             width="360"
+             alt="aKaReZa 122 – AVR, Timer, Millis - Mode 7 Thumbnail"/>
+      </a>
+    </td>
+  </tr>
+</table>
 
 # 💻 How to Use Git and GitHub
 To access the repository files and save them on your computer, there are two methods available:
